@@ -18,4 +18,8 @@ public class ShaUtil {
 		Digester sha = new Digester(DigestAlgorithm.SHA512);
 		return sha.digestHex(str);
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(sha1("qsg201804151438token"));
+	}
 }

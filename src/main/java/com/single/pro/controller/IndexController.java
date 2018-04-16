@@ -5,15 +5,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.single.pro.cache.CacheUtil;
-import com.single.pro.service.TestService;
+import com.single.pro.request.model.BaseRequestModel;
 
 /**
  * <p>
@@ -27,22 +26,22 @@ import com.single.pro.service.TestService;
 @RequestMapping("/")
 public class IndexController {
 
-	@Autowired
-	TestService testService;
 
 	@RequestMapping(value = { "/index" }, method = { RequestMethod.GET })
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("index");
-		System.out.println(testService.test(null));
 		return mav;
 	}
 
 	@ResponseBody
-	@RequestMapping(value = { "/json" }, method = { RequestMethod.GET, RequestMethod.POST })
-	public Map<String, Object> json(HttpServletRequest request) {
+	@RequestMapping(value = { "/json" }, method = { RequestMethod.POST }, produces = "application/json")
+	public Map<String, Object> json(HttpServletRequest request,
+			@RequestBody(required = true) BaseRequestModel requestModel) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("code", 200);
-		map.put("data", CacheUtil.get("single:system:city", "110000"));
+		map.put("name", requestModel);
+		map.put("wxToken", request.getHeader("wxToken"));
+		map.put("appId", request.getHeader("appId"));
 		return map;
 	}
 }
