@@ -26,7 +26,9 @@ public class ReturnInfo {
 	public static String returnOkWithData(Object data) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("code", OK);
-		map.put("data", data);
+		if (data != null) {
+			map.put("data", data);
+		}
 		return JSON.toJSONString(map);
 	}
 
