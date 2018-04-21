@@ -10,11 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.single.pro.config.WxmpConfig;
+import com.single.pro.request.model.WxLoginRequestModel;
 import com.single.pro.util.ReturnInfo;
 import com.single.pro.util.WxRequestUtil;
 
@@ -36,9 +39,9 @@ public class WxApiController {
 	WxmpConfig wxmpConfig;
 
 	@ResponseBody
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request) {
-		String code = request.getParameter("code");
+	@RequestMapping(value = { "/login" }, method = { RequestMethod.POST }, produces = "application/json; charset=utf-8")
+	public String login(HttpServletRequest request, @RequestBody(required = true) WxLoginRequestModel requestModel) {
+		String code = requestModel.getCode();
 		if (StringUtils.isBlank(code)) {
 			return ReturnInfo.returnErrWithMsg("无效的参数");
 		}
