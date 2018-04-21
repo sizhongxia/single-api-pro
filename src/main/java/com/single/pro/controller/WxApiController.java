@@ -48,6 +48,7 @@ public class WxApiController {
 		String wx_login = "https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code";
 		String requestUrl = wx_login.replaceAll("APPID", wxmpConfig.getMpAppId())
 				.replaceAll("SECRET", wxmpConfig.getMpAppSecret()).replaceAll("JSCODE", code);
+		logger.info(">>>>> " + requestUrl);
 		StringBuffer sb = null;
 		try {
 			sb = WxRequestUtil.httpsRequest(requestUrl, "GET", null);
