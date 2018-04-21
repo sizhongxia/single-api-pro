@@ -43,8 +43,8 @@
 	</bean>
 	
 	<bean id="wxmpConfig" class="com.single.pro.config.WxmpConfig">
-		<property name="mpAppId" value="mp.appid"></property>
-		<property name="mpAppSecret" value="mp.appsecret"></property>
+		<property name="mpAppId" value="${mp.appid}"></property>
+		<property name="mpAppSecret" value="${mp.appsecret}"></property>
 	</bean>
 
     <!-- 文件云存储 -->
