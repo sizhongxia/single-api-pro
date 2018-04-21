@@ -21,6 +21,7 @@
 				<value>classpath:/mysql.properties</value>
 				<value>classpath:/redis.properties</value>
 				<value>classpath:/storage.properties</value>
+				<value>classpath:/wxmp.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -39,6 +40,11 @@
 
 	<bean id="cacheUtil" class="com.single.pro.redis.CacheUtil">
 		<property name="redisConfig" ref="redisConfig"></property>
+	</bean>
+	
+	<bean id="wxmpConfig" class="com.single.pro.config.WxmpConfig">
+		<property name="mpAppId" value="mp.appid"></property>
+		<property name="mpAppSecret" value="mp.appsecret"></property>
 	</bean>
 
     <!-- 文件云存储 -->

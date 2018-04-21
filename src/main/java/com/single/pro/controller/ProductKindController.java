@@ -33,7 +33,7 @@ public class ProductKindController {
 
 	@ResponseBody
 	@RequestMapping(value = { "/data" }, method = { RequestMethod.POST }, produces = "application/json; charset=utf-8")
-	public String json(HttpServletRequest request, @RequestBody(required = true) BaseRequestModel requestModel) {
+	public String data(HttpServletRequest request, @RequestBody(required = true) BaseRequestModel requestModel) {
 		String cacheKey = "single.cache:single:api:product:kind:data";
 		String res = cacheUtil.get(cacheKey);
 		if (StringUtils.isNotBlank(res)) {

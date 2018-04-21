@@ -33,7 +33,7 @@ public class ProductTypeController {
 
 	@ResponseBody
 	@RequestMapping(value = { "/data" }, method = { RequestMethod.POST }, produces = "application/json; charset=utf-8")
-	public String json(HttpServletRequest request, @RequestBody(required = true) ProductTypeRequestModel requestModel) {
+	public String data(HttpServletRequest request, @RequestBody(required = true) ProductTypeRequestModel requestModel) {
 		String kindId = requestModel.getKindId();
 		if (StringUtils.isBlank(kindId)) {
 			return ReturnInfo.returnErrWithMsg("无效的产品种类标识");
